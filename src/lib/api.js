@@ -1,9 +1,7 @@
-const API_BASE = import.meta.env.VITE_API_BASE
+/** Same-origin /api on Vercel; override via VITE_API_BASE at build time if needed. */
+const API_BASE = import.meta.env.VITE_API_BASE || '/api'
 
 function apiUrl(path) {
-  if (!API_BASE) {
-    throw new Error('Missing VITE_API_BASE — set it in .env (e.g. /api)')
-  }
   const base = API_BASE.replace(/\/$/, '')
   return `${base}${path}`
 }
